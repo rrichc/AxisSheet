@@ -162,8 +162,12 @@ public struct AxisSheet<Header, Content>: View where Header: View, Content: View
                 .frame(width: constants.header.size)
             }
         }
-        .clipShape(cornerShape)
-        .shadow(color: Color.black.opacity(0.1), radius: 6, x: 0, y: 0)
+        .applyIf(header.roundCorner) { view in
+                view.clipShape(cornerShape)
+        }
+        .applyIf(header.shadow) { view in
+                view.shadow(color: Color.black.opacity(0.1), radius: 6, x: 0, y: 0)
+        }
         .highPriorityGesture(dragGesture)
         .opacity(constants.presentationMode == .minimize ? 1 : alpha == 0 ? 0 : 1)
         .onTapGesture {
@@ -308,7 +312,7 @@ public extension AxisSheet where Header : View, Content : View {
 
 struct AxisSheet_Previews: PreviewProvider {
     static var previews: some View {
-        AxisSheet(isPresented: .constant(true)) {
+        AxisSheet(isPresented: .constant(true), constants: ASConstant(header: ASHeaderConstant(shadow: false, roundCorner: false))) {
             Text("AxisSheet")
         }
     }

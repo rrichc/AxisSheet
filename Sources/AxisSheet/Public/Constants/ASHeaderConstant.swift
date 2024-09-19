@@ -46,6 +46,12 @@ public struct ASHeaderConstant: Equatable {
     /// The background color of the header.
     public var backgroundColor: Color
     
+    /// Apply shadow to the header.
+    public var shadow: Bool
+    
+    /// Round the corners of the header.
+    public var roundCorner: Bool
+    
     
     /// Initializes `ASHeaderConstant`
     /// - Parameters:
@@ -60,12 +66,17 @@ public struct ASHeaderConstant: Equatable {
                 longAxis: CGFloat = 36,
                 cornerRadius: CGFloat = 21,
                 color: Color = .accentColor,
-                backgroundColor: Color = .black.opacity(0.8)) {
+                backgroundColor: Color = .black.opacity(0.8),
+                shadow: Bool = true,
+                roundCorner: Bool = true
+    ) {
         self.size = size
         self.shortAxis = shortAxis
         self.longAxis = longAxis
         self.cornerRadius = cornerRadius
         self.color = color
         self.backgroundColor = backgroundColor
+        self.shadow = shadow
+        self.roundCorner = roundCorner
     }
 }

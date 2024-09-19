@@ -41,4 +41,14 @@ public extension View {
             self
         }
     }
+    
+
+    // Conditionally apply a modifier
+    func applyIf<T: View>(_ condition: Bool, modifier: (Self) -> T) -> some View {
+        if condition {
+            return AnyView(modifier(self))
+        } else {
+            return AnyView(self)
+        }
+    }
 }
